@@ -1,5 +1,6 @@
 // Central place for your frontend to call the backend
-export const API_BASE = import.meta.env.VITE_API_BASE || 'https://bineytna.com';
+export const API_BASE = 'https://tenants-api.onrender.com';
+
 
 
 export async function api(path, opts = {}) {
