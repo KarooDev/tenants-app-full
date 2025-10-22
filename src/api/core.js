@@ -1,5 +1,6 @@
 // src/api/core.js
-export const API_BASE = import.meta.env.VITE_API_BASE || "https://bineytna.com";
+export const API_BASE = import.meta.env.VITE_API_BASE || "https://tenants-api.onrender.com";
+
 
 // Build a URL like http://localhost:8080/<path>?<qs>
 function buildUrl(path, params = {}) {

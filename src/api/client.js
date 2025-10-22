@@ -1,5 +1,6 @@
 // Central place for your frontend to call the backend
-export const API_BASE = import.meta.env.VITE_API_BASE;
+export const API_BASE = import.meta.env.VITE_API_BASE || 'https://bineytna.com';
+
 
 export async function api(path, opts = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
