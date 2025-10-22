@@ -2,18 +2,7 @@ export const API_BASE =
   import.meta.env.VITE_API_BASE ??
   (import.meta.env.DEV ? 'http://localhost:8080' : 'https://bineytna.com');
 
-function buildUrl(path, params) {
-  const url = new URL(path.startsWith('http') ? path : API_BASE + path);
-  if (params && typeof params === 'object') {
-    Object.entries(params).forEach(([k, v]) => {
-      if (v === undefined || v === null || v === '') return;
-      url.searchParams.set(k, String(v));
-    });
-  }
-  return url.toString();
-}
-
-
+// ✅ keep only ONE buildUrl definition
 function buildUrl(path, params) {
   const url = new URL(path.startsWith('http') ? path : API_BASE + path);
   if (params && typeof params === 'object') {
