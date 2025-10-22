@@ -1,0 +1,235 @@
+/* Tailwind (base → components → utilities) */
+ @import "tailwindcss/utilities";
+ @import "tailwindcss";       /* loads base, components, utilities */
+
+ 
+ html, body, #root { height: 100%; }
+/* ---------- App theme tokens (light, fresh green) ---------- */
+:root{
+/* Surfaces */
+--bg: #f7f8fa;                 /* app background (very light gray) */
+--panel: #ffffff;              /* cards/panels */
+--border: rgba(16, 24, 40, .08);/* soft divider/border */
+
+/* Text */
+--text: #0f172a;               /* near-black */
+--muted: #667085;              /* medium gray */
+
+/* Brand */
+--accent: #00D492;             /* emerald */
+--accent-600: #0fb17e;         /* hover/focus */
+--mint: #eaf7f0;               /* pale green chip bg */
+
+--radius: 20px;
+--shadow: 0 6px 24px rgba(34, 50, 83, 0.06);
+  /* …your existing tokens… */
+  --skeleton: color-mix(in oklab, #101828 8%, white);        /* subtle gray */
+  --skeleton-strong: color-mix(in oklab, #101828 14%, white); /* for pills/contrast */
+}
+
+/* Base layout */
+
+* { box-sizing: border-box; }
+
+body {
+margin: 0;
+background: var(--bg);
+color: var(--text);
+font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a { color: #00D492; text-decoration: none; }
+a:hover { color: #0fb17e; text-decoration: underline; }
+
+button { font: inherit; cursor: pointer; }
+
+/* Reusable card */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--panel);           /* solid, not translucent */
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Pills / small badges ---------- */
+.pill,
+.badge {
+display: inline-flex;
+align-items: center;
+gap: .375rem;
+padding: .25rem .5rem;
+border-radius: 999px;
+background: var(--mint);
+color: #00D492; /* deep green text */
+border: 1px solid color-mix(in oklab, var(--accent) 24%, white);
+font-size: 12px;
+line-height: 1;
+}
+
+/* ---------- THEMED SELECT (hide native arrow, custom caret) ---------- */
+select,
+.ui-select{
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+width:100%;
+background-color:var(--panel);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:10px;
+padding:8px 36px 8px 12px; /* room for caret */
+line-height:1.35;
+outline:none;
+transition:box-shadow .15s ease,border-color .15s ease,background-color .15s ease;
+}
+select:hover,
+.ui-select:hover{
+background-color: color-mix(in oklab, var(--panel) 96%, #00D492 4%);
+}
+select:focus,
+.ui-select:focus{
+border-color: color-mix(in oklab, var(--accent) 70%, black 0%);
+box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, white);
+}
+select:disabled,
+.ui-select:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+/* Placeholder-ish when value="" */
+select:has(option[value=""]:checked),
+.ui-select:has(option[value=""]:checked){
+color:var(--muted);
+}
+
+/* Wrapper makes space for caret */
+.ui-select-wrap{
+position:relative;
+display:inline-block;
+width:100%;
+}
+.ui-select-wrap > select,
+.ui-select-wrap > .ui-select{ padding-right:40px; }
+
+/* Custom caret */
+.ui-select-wrap::after{
+content:"";
+position:absolute;
+pointer-events:none;
+right:12px;
+top:50%;
+translate:0 -50%;
+width:10px;
+height:10px;
+background-image:url('data:image/svg+xml;utf8,\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">\<path d="M5 7.5 10 12.5 15 7.5" stroke="%23667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\</svg>');
+background-repeat:no-repeat;
+background-size:100% 100%;
+opacity:.9;
+}
+.ui-select-wrap:has(select:focus)::after,
+.ui-select-wrap:has(.ui-select:focus)::after{
+opacity:1;
+}
+
+/* Options popup (UA dependent) */
+select option{
+color: var(--text);
+background: #ffffff;
+}
+@media (prefers-color-scheme: dark){
+/* in case users force dark on OS while app stays light */
+:root{
+  --skeleton: color-mix(in oklab, white 85%, #101828);
+  --skeleton-strong: color-mix(in oklab, white 78%, #101828);
+}
+select option{
+  color:#eef2f6;
+  background:#0e1514;
+}
+}
+
+/* ---------- THEMED CHECKBOX ---------- */
+input[type="checkbox"].ui-checkbox{
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+width:18px;
+height:18px;
+border-radius:6px;
+border:1px solid var(--border);
+background:var(--panel);
+display:inline-grid;
+place-content:center;
+cursor:pointer;
+transition:border-color .15s ease,background-color .15s ease,box-shadow .15s ease;
+vertical-align:middle;
+}
+input[type="checkbox"].ui-checkbox::before{
+content:"";
+width:12px;
+height:12px;
+transform:scale(0);
+transition:transform .15s ease;
+background:conic-gradient(from 0deg, var(--accent) 0 360deg);
+clip-path:polygon(14% 52%,0 65%,45% 100%,100% 18%,86% 5%,44% 60%);
+border-radius:3px;
+}
+input[type="checkbox"].ui-checkbox:checked{
+border-color: color-mix(in oklab, var(--accent) 70%, black 0%);
+background: color-mix(in oklab, var(--panel) 85%, var(--accent) 15%);
+box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, white);
+}
+input[type="checkbox"].ui-checkbox:checked::before{ transform:scale(1); }
+input[type="checkbox"].ui-checkbox:indeterminate::before{
+transform:scale(1);
+clip-path:inset(40% 15% 40% 15% round 2px);
+}
+input[type="checkbox"].ui-checkbox:hover{
+background-color: color-mix(in oklab, var(--panel) 96%, #00D492 4%);
+}
+input[type="checkbox"].ui-checkbox:focus-visible{
+outline:none;
+box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 25%, white);
+border-color: color-mix(in oklab, var(--accent) 70%, black 0%);
+}
+input[type="checkbox"].ui-checkbox:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+.ui-check{ display:inline-flex; align-items:center; gap:8px; }
+
+/* ---------- Inline layout helpers ---------- */
+.ui-inline > select,
+.ui-inline > .ui-select { min-width:160px; }
+.ui-select-wrap.ui-inline { width:auto; }
+
+/* ---------- Scrollbar hiding helper ---------- */
+.no-scrollbar::-webkit-scrollbar { display:none; }
+.no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ---------- Optional: ratings color ---------- */
+:root { --star: #fbbf24; } /* gold stars */
+/* Dashboard-style card baseline for all .card */
+
+/* subtle corner glow (pseudo-element so no markup change) */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 9999px;
+  opacity: .25;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--accent) 26%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}

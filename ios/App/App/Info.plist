@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleDisplayName</key><string>Bineytna</string>
+  <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+  <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
+  <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
+
+  <key>LSRequiresIPhoneOS</key><true/>
+
+  <key>UILaunchStoryboardName</key><string>LaunchScreen</string>
+  <key>UIMainStoryboardFile</key><string>Main</string>
+
+  <key>UIRequiredDeviceCapabilities</key>
+  <array>
+    <string>armv7</string>
+  </array>
+
+  <!-- Choose the orientations you actually support -->
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+  </array>
+  <key>UISupportedInterfaceOrientations~ipad</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+
+  <key>UIViewControllerBasedStatusBarAppearance</key><true/>
+
+  <!-- Privacy -->
+  <key>NSCameraUsageDescription</key>
+  <string>Allow Bineytna to use the camera for scanning/upload.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Allow Bineytna to save images.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Allow Bineytna to access the photo library.</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Allow Bineytna to access your location for check-ins.</string>
+
+  <!-- App Transport Security: prefer HTTPS; add domain exceptions only if required -->
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key><false/>
+    <!-- Uncomment if you must call specific http:// hosts
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>your-internal-host.example</key>
+      <dict>
+        <key>NSIncludesSubdomains</key><true/>
+        <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key><true/>
+        <key>NSTemporaryExceptionMinimumTLSVersion</key><string>TLSv1.2</string>
+      </dict>
+    </dict>
+    -->
+  </dict>
+
+  <!-- Export compliance -->
+  <key>ITSAppUsesNonExemptEncryption</key><false/>
+
+  <!-- Optional: force UI style -->
+  <!-- <key>UIUserInterfaceStyle</key><string>Light</string> -->
+
+  <!-- Optional: deep link scheme
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>bineytna</string>
+      </array>
+    </dict>
+  </array>
+  -->
+</dict>
+</plist>
